@@ -41,3 +41,40 @@ class PathParser:
                 # remove any trailing slashes
                 break
         return cls.__removeSlashesFromEndOfString(fileName)
+
+    @classmethod
+    def getFileExtensionFromPath(cls, path: str) -> str:
+        """
+        'some/path/myFile.txt' -> 'txt'
+        'invalidString' -> None
+        """
+        extension = None
+        tmpSections = path.split(".")
+        if len(tmpSections) > 1:
+            extension = tmpSections[-1]
+        return extension
+
+    @classmethod
+    def cleanExtension(cls, s: str) -> str:
+        """
+        '.mp4' -> 'mp4'
+        'mp4' -> 'mp4'
+        """
+        return s.replace(".", "")
+
+    @classmethod
+    def isFile(cls, s: str) -> bool:
+        """
+        'myFile.mp4' -> True
+        'test/myFile.mp4' -> True
+        'test' -> False
+        """
+        return s.count(".") > 0
+
+    @classmethod
+    def removeFileExtensionFromPath(cls, path: str) -> str:
+        """
+        'some/path/myFile.txt' -> 'some/path/myFile'
+        'some/path' -> 'some/path'
+        """
+        return path.split(".")[0]
