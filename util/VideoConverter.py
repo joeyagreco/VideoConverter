@@ -18,7 +18,7 @@ class VideoConverter:
         print(f"CONVERTING {self.__oldVideoPath} -> {self.__newVideoPath} ...")
         self.__createNewDirectoryIfNonExistent()
         subprocess.run(
-            f"ffmpeg -i {self.__oldVideoPath} -vcodec h264 -acodec aac {self.__newVideoPath} -loglevel {self.__logLevel}",
+            f"""ffmpeg -i "{self.__oldVideoPath}" -vcodec h264 -acodec aac "{self.__newVideoPath}" -loglevel {self.__logLevel}""",
             shell=True,
             stdout=subprocess.DEVNULL)
         print("FINISHED CONVERTING")
