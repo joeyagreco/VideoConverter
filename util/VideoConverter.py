@@ -17,11 +17,14 @@ class VideoConverter:
     def convert(self):
         print(f"CONVERTING {self.__oldVideoPath} -> {self.__newVideoPath} ...")
         self.__createNewDirectoryIfNonExistent()
-        subprocess.run(
-            f"""ffmpeg -i "{self.__oldVideoPath}" -vcodec h264 -acodec aac "{self.__newVideoPath}" -loglevel {self.__logLevel}""",
-            shell=True,
-            stdout=subprocess.DEVNULL)
-        print("FINISHED CONVERTING")
+        if os.path.exists(self.__newVideoPath):
+            print("CONVERTED FILE EXISTS! SKIPPING CONVERSION.")
+        else:
+            subprocess.run(
+                f"""ffmpeg -i "{self.__oldVideoPath}" -vcodec h264 -acodec aac "{self.__newVideoPath}" -loglevel {self.__logLevel}""",
+                shell=True,
+                stdout=subprocess.DEVNULL)
+            print("FINISHED CONVERTING")
 
     def __createNewDirectoryIfNonExistent(self):
         # creates the directory in self.__oldVideoPath if it doesn't already exist
