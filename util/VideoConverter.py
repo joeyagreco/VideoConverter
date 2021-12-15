@@ -15,7 +15,8 @@ class VideoConverter:
         self.__logLevel = kwargs.pop("logLevel", "error")
 
     def convert(self):
-        print(f"CONVERTING {self.__oldVideoPath} -> {self.__newVideoPath} ...")
+        print(
+            f"CONVERTING '{PathParser.getFileNameFromPath(self.__oldVideoPath)}' FROM '{PathParser.getFileExtensionFromPath(self.__oldVideoPath)}' -> '{PathParser.getFileExtensionFromPath(self.__newVideoPath)}'")
         self.__createNewDirectoryIfNonExistent()
         if os.path.exists(self.__newVideoPath):
             print("CONVERTED FILE EXISTS! SKIPPING CONVERSION.")
