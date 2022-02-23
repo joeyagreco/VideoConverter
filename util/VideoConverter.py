@@ -28,7 +28,7 @@ class VideoConverter:
             print("FINISHED CONVERTING")
 
     def __createNewDirectoryIfNonExistent(self):
-        # creates the directory in self.__oldVideoPath if it doesn't already exist
+        # creates the directory in self.__newVideoPath if it doesn't already exist
         newDirectory = PathParser.getPathWithoutFileName(self.__newVideoPath)
         if not os.path.exists(newDirectory):
             # Create a new directory because it does not exist
